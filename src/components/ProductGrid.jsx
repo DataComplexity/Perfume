@@ -1,9 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const PRODUCTS = [
@@ -709,7 +708,7 @@ function ProductCard({ product, featured = false, onAuthRequired }) {
 
 const FILTERS = ["All", "Niche", "Designer", "Middle Eastern", "Home Fragrance"];
 
-export default function ProductGrid({ initialCategory = "All" }) {
+function ProductGridContent({ initialCategory = "All" }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const searchQuery = searchParams.get("search") || "";
@@ -847,6 +846,14 @@ export default function ProductGrid({ initialCategory = "All" }) {
         )}
       </AnimatePresence>
     </section>
+  );
+}
+
+export default function ProductGrid(props) {
+  return (
+    <Suspense fallback={<div className="py-20 text-center font-label text-xs uppercase tracking-widest opacity-50">Loading Discovery Studio...</div>}>
+      <ProductGridContent {...props} />
+    </Suspense>
   );
 }
 

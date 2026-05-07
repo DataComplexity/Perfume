@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import ProductGrid from "@/components/ProductGrid";
@@ -9,7 +10,9 @@ export default function HomePage() {
     <main>
       <Navbar />
       <HeroSection />
-      <ProductGrid />
+      <Suspense fallback={<div>Loading...</div>}>
+        <ProductGrid />
+      </Suspense>
       <EditorialSections />
       <Footer />
     </main>

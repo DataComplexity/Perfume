@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ProductGrid from "@/components/ProductGrid";
@@ -50,7 +51,9 @@ export default function CategoryPage({ searchParams }) {
       </div>
 
       <div className="flex-grow">
-        <ProductGrid initialCategory={activeCategory} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <ProductGrid initialCategory={activeCategory} />
+        </Suspense>
       </div>
 
       <Footer />

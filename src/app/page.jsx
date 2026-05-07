@@ -5,6 +5,8 @@ import ProductGrid from "@/components/ProductGrid";
 import EditorialSections from "@/components/EditorialSections";
 import Footer from "@/components/Footer";
 
+export const dynamic = 'force-dynamic';
+
 export default function HomePage() {
   return (
     <main>
